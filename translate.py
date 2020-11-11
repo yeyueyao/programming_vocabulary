@@ -51,7 +51,7 @@ class Translate:
             return None
         return res[0].get('v', None)
 
-    def _trans_test(self, word):
+    def _trans_new(self, word):
         url = 'http://open.iciba.com/huaci_v3/dict.php?word=' + word
         try:
             req = requests.get(url, timeout=10)
@@ -108,7 +108,7 @@ class Translate:
         req = requests.get(url)
         print(req.json())
 
-    # 使用 金山单词 翻译接口
+    # 使用 金山单词 新翻译接口
     # 百度接口没有音标
     # 扇贝接口包含的信息不如其他两家
     def trans(self):
@@ -118,7 +118,7 @@ class Translate:
             return
         for word in query:
             print(word)
-            res = self._trans_test(word.name)
+            res = self._trans_new(word.name)
             if res:
                 word.phonogram = res[0]
                 # word.
@@ -136,4 +136,4 @@ if __name__ == '__main__':
     # print(res)
     # res = t._trans()
     t.trans()
-    # print(t._trans_test('structure'))
+    # print(t._trans_new('structure'))
