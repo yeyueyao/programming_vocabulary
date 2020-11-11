@@ -7,11 +7,15 @@
 
 import bs4
 import re
+import sys
+sys.path.append(".")
+sys.path.append("..")
 
-from spiders.utils import Utils
-
+from mySpiders.utils import Utils
 
 PATH_DIR = 'github/'
+
+
 # add some github projects
 # return all projects' urls base on githubur
 # 添加一些 github 项目/仓库地址，　返回所有仓库地址
@@ -27,7 +31,8 @@ class _Settings:
         # dependent directories
         # 独立的仓库
         self.projectsUrl = [
-            'https://github.com/zx576/scancode_backend'
+            # 'https://github.com/zx576/scancode_backend',
+            'https://github.com/Mooophy/Cpp-Primer'
         ]
         # invoke general class
         # 爬虫工具箱
@@ -62,11 +67,10 @@ class _Settings:
 
         return links
 
-
     def parse(self):
 
         # deduplicate urls
-        return list(set(self.projectsUrl+self._parse_pool()))
+        return list(set(self.projectsUrl + self._parse_pool()))
 
 
 # 爬虫程序
@@ -86,14 +90,13 @@ class GitSpider:
 
         return soup_article.get_text(' ') if soup_article else None
 
-
     def _save(self, url, words):
 
         self.util.checkpath(PATH_DIR)
         if not words:
             return
         title = url.split('/')[-1]
-        with open(PATH_DIR+'{}.txt'.format(title), 'w')as f:
+        with open(PATH_DIR + '{}.txt'.format(title), 'w')as f:
             f.write(words)
 
     def start(self):

@@ -43,13 +43,13 @@ class NewWord(Model):
     # 是否有效
     is_valid = BooleanField(default=True)
     # 音标
-    phonogram = CharField(default='')
-    # reserved columns
-    # 保留字段，便于之后扩展
-    re1 = CharField(default='')
-    re2 = CharField(default='')
-    re3 = IntegerField(default=0)
-    re4 = IntegerField(default=0)
+    # phonogram = CharField(default='')
+    # # reserved columns
+    # # 保留字段，便于之后扩展
+    # re1 = CharField(default='')
+    # re2 = CharField(default='')
+    # re3 = IntegerField(default=0)
+    # re4 = IntegerField(default=0)
 
     class Meta:
         database = new_db

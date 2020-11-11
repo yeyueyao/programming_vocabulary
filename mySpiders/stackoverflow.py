@@ -6,7 +6,7 @@
 
 import bs4
 
-from spiders.utils import Utils
+from mySpiders.utils import Utils
 
 PATH_DIR = 'stack/'
 

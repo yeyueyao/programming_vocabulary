@@ -9,9 +9,10 @@
 import bs4
 import queue
 
-from spiders.utils import Utils
+from mySpiders.utils import Utils
 
 PATH_DIR = 'docs/'
+
 
 class _Down:
 
@@ -23,11 +24,11 @@ class _Down:
         self.util.checkpath(PATH_DIR)
         if not words:
             return
-        with open(PATH_DIR+title, 'a+')as f:
+        with open(PATH_DIR + title, 'a+')as f:
             f.write(words)
 
     # 递归抓取某文档所有链接
-    def _download(self, qu, domain, title,switch=True):
+    def _download(self, qu, domain, title, switch=True):
         # print(title)
         if qu.empty():
             return
@@ -37,7 +38,7 @@ class _Down:
 
         if not text:
             # qu.put(url)
-            return self._download(qu,domain, title, False)
+            return self._download(qu, domain, title, False)
 
         if switch:
             res = self._download_links(domain, text)
@@ -45,9 +46,9 @@ class _Down:
                 qu.put(i)
 
         words = self._download_docs(text)
-        self._save(title,words)
+        self._save(title, words)
 
-        return self._download(qu, domain, title,switch=False)
+        return self._download(qu, domain, title, switch=False)
 
     def _download_docs(self, page):
 
@@ -65,7 +66,7 @@ class _Down:
         soup = bs4.BeautifulSoup(page, 'lxml')
         soup_link = soup.find_all('a')
         for link in soup_link:
-            lst.append(domain+link['href'])
+            lst.append(domain + link['href'])
 
         return lst
 
@@ -104,12 +105,9 @@ class Pat1(_Down):
         return res
 
     def get(self):
-
         return self.download(self.url, self.domain, self.title)
+
 
 if __name__ == '__main__':
     p1 = Pat1()
     p1.get()
-
-
-

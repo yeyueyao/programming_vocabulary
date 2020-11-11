@@ -1,4 +1,0 @@
-peewee
-requests
-bs4
-lxml

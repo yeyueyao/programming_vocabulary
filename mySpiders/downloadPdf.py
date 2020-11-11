@@ -4,19 +4,24 @@
 # 下载 pdf 文件， 将 pdf 下载地址添加到 downlst ,运行程序即可
 
 import requests
-from spiders.utils import Utils
+import sys
+
+sys.path.append(".")
+sys.path.append("..")
+
+from mySpiders.utils import Utils
 
 PATH_DIR = 'download/'
 util = Utils()
 
-def download(url):
 
+def download(url):
     util.checkpath(PATH_DIR)
 
     req = requests.get(url)
     c = req.content
     name = url.split('/')[-1]
-    with open(PATH_DIR+name, 'wb')as f:
+    with open(PATH_DIR + name, 'wb')as f:
         f.write(c)
 
 
@@ -28,7 +33,7 @@ downlst = [
     #  ///////////
     # 'http://www.oreilly.com/programming/free/files/functional-programming-python.pdf',
     # 'https://doc.lagout.org/programmation/python/Python%20Pocket%20Reference_%20Python%20in%20Your%20Pocket%20%285th%20ed.%29%20%5BLutz%202014-02-09%5D.pdf',
-    # 'http://www.oreilly.com/programming/free/files/a-whirlwind-tour-of-python.pdf',
+    'http://www.oreilly.com/programming/free/files/a-whirlwind-tour-of-python.pdf',
     # 'http://www.oreilly.com/programming/free/files/20-python-libraries-you-arent-using-but-should.pdf',
     # 'http://www.oreilly.com/programming/free/files/hadoop-with-python.pdf',
     # 'http://www.oreilly.com/programming/free/files/how-to-make-mistakes-in-python.pdf',
@@ -53,10 +58,9 @@ downlst = [
     # 'https://media.readthedocs.org/pdf/peewee/latest/peewee.pdf',
     # 'https://media.readthedocs.org/pdf/pillow/latest/pillow.pdf',
     # 'https://media.readthedocs.org/pdf/scrapy/1.0/scrapy.pdf',
-'https://media.readthedocs.org/pdf/xlwt/latest/xlwt.pdf'
-#     'http://1.droppdf.com/files/X06AR/fluent-python-2015-.pdf',
-#     'http://files.meetup.com/18552511/Learn%20Python%20The%20Hard%20Way%203rd%20Edition%20V413HAV.pdf',
-
+    # 'https://media.readthedocs.org/pdf/xlwt/latest/xlwt.pdf'
+    #     'http://1.droppdf.com/files/X06AR/fluent-python-2015-.pdf',
+    'http://files.meetup.com/18552511/Learn%20Python%20The%20Hard%20Way%203rd%20Edition%20V413HAV.pdf',
 
 ]
 
