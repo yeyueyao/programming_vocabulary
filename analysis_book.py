@@ -38,13 +38,11 @@ class AnlysisBook():
         newbook = NewBook.create(
             name=bookname,
             total=len(words)
-
         )
         return newbook
 
     # filter valid words
     def _filter_words(self, raw_words, count=NUMBERS):
-
         new_words = []
         for word in raw_words:
             if word not in exclude_list and len(word) > 1:
@@ -80,10 +78,16 @@ class AnlysisBook():
                 word_ins.frequency += fre
                 word_ins.save()
             else:
-                word_ins = NewWord.create(
-                            name=word,
-                            frequency=fre,
-                        )
+                if len(word) <= 5:
+                    continue
+                if len(word) >= 20:
+                    continue
+                if word.endswith('ed') or word.endswith('ing'):
+                    continue
+                NewWord.create(
+                    name=word,
+                    frequency=fre,
+                )
 
         # print('处理了 {} 个单词'.format(len(words)))
         # 标记该书已经被处理

@@ -1,4 +1,4 @@
-# conding=utf-8
+# coding=utf-8
 # author = zhouxin
 # date = 2017.7.11
 # description
@@ -6,9 +6,10 @@
 
 import os
 
-from settings import DIRS,FILES,DATABASE
+from settings import DIRS, FILES, DATABASE
 from analysis_book import AnlysisBook
 from models_exp import new_db, NewWord, NewBook
+
 
 # 解析所有文件路径
 class ParseFile:
@@ -61,7 +62,6 @@ class Dt:
         self.build()
 
     def build(self):
-
         created = os.path.exists(DATABASE)
 
         if not created:
@@ -70,16 +70,13 @@ class Dt:
 
 
 if __name__ == '__main__':
-
     # 建表
     dt = Dt()
     # 解析文件路径
     s = ParseFile()
     res = s.parse(DIRS, FILES)
-    # print(len(res))
+    print(len(res))
     # extract words from books
     ana = AnlysisBook()
     ana.analysis(res)
-    # print(res)
-
-
+    print(res)
